@@ -6,6 +6,17 @@ class Board extends Component {
     values: Array(9).fill(null),
   }
 
+  updateBoard = squareNumber => {
+    console.log('square number: ', squareNumber)
+    this.setState(prevState => {
+      return {
+        values: prevState.values.map((value, index) => {
+          return value !== 'X' && index == squareNumber ? 'X' : value
+        }),
+      }
+    })
+  }
+
   render() {
     const { values } = this.state
     const offsets = [0, 3, 6]
@@ -17,6 +28,7 @@ class Board extends Component {
             offset={offset}
             values={values.slice(offset, offset + 3)}
             key={index}
+            updateBoard={this.updateBoard}
           />
         ))}
       </div>

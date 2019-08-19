@@ -16,9 +16,13 @@ html {
 }
 
 #board {
+  display: flex;
+  flex-flow: column nowrap;
 }
 
 .row {
+  display: flex;
+  flex-flow: row nowrap;
 }
 
 .square {
