@@ -2,16 +2,17 @@ import React from 'react'
 import Square from './Square'
 import PropTypes from 'prop-types'
 
-const Row = ({ indices }) => (
+const Row = ({ values, offset }) => (
   <div className='row'>
-    {indices.map(value => (
-      <Square value={value} key={value} />
+    {values.map((value, index) => (
+      <Square value={value} key={offset + index} id={offset + index} />
     ))}
   </div>
 )
 
 Row.propTypes = {
-  indices: PropTypes.array.isRequired,
+  values: PropTypes.array.isRequired,
+  offset: PropTypes.number.isRequired,
 }
 
 export default Row
