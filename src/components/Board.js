@@ -1,5 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import Row from './Row'
+import NextPlayer from './NextPlayer'
+import GameStatus from './GameStatus'
 
 class Board extends Component {
   state = {
@@ -25,21 +27,57 @@ class Board extends Component {
     })
   }
 
+  calculateWinner(squares) {
+    const lines = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ]
+    for (let i = 0; i < lines.length; i++) {
+      const [a, b, c] = lines[i]
+      if (
+        squares[a] &&
+        squares[a] === squares[b] &&
+        squares[a] === squares[c]
+      ) {
+        return squares[a]
+      }
+    }
+    return null
+  }
+
+  restartGame = () => {
+    this.setState({
+      values: Array(9).fill(null),
+      xIsNext: true,
+    })
+  }
+
   render() {
-    const { values } = this.state
+    const { values, xIsNext } = this.state
     const offsets = [0, 3, 6]
+    const winner = this.calculateWinner(values)
 
     return (
-      <div id='board'>
-        {offsets.map((offset, index) => (
-          <Row
-            offset={offset}
-            values={values.slice(offset, offset + 3)}
-            key={index}
-            updateBoard={this.updateBoard}
-          />
-        ))}
-      </div>
+      <Fragment>
+        <NextPlayer xIsNext={xIsNext} />
+        <div id='board'>
+          {offsets.map((offset, index) => (
+            <Row
+              offset={offset}
+              values={values.slice(offset, offset + 3)}
+              key={index}
+              updateBoard={this.updateBoard}
+            />
+          ))}
+        </div>
+        <GameStatus winner={winner} restartGame={this.restartGame} />
+      </Fragment>
     )
   }
 }
