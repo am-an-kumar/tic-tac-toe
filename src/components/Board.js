@@ -4,15 +4,23 @@ import Row from './Row'
 class Board extends Component {
   state = {
     values: Array(9).fill(null),
+    xIsNext: true,
   }
 
   updateBoard = squareNumber => {
-    console.log('square number: ', squareNumber)
     this.setState(prevState => {
       return {
         values: prevState.values.map((value, index) => {
-          return value !== 'X' && index == squareNumber ? 'X' : value
+          return index === squareNumber && value == null
+            ? prevState.xIsNext
+              ? 'X'
+              : 'O'
+            : value
         }),
+        xIsNext:
+          prevState.values[squareNumber] == null
+            ? !prevState.xIsNext
+            : prevState.xIsNext,
       }
     })
   }

@@ -8,7 +8,7 @@ const Square = ({ value, id, updateBoard }) => (
 )
 
 Square.propTypes = {
-  value: PropTypes.number,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   id: PropTypes.number.isRequired,
   updateBoard: PropTypes.func.isRequired,
 }
