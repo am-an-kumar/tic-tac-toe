@@ -9,6 +9,7 @@ class Game extends Component {
     values: Array(9).fill(null),
     xIsNext: true,
     history: [Array(9).fill(null)],
+    moveCount: 0,
   }
 
   revertLastMove = () => {
@@ -20,6 +21,7 @@ class Game extends Component {
           values: prevState.history[prevState.history.length - 2],
           history: prevState.history.slice(0, prevState.history.length - 1),
           xIsNext: !prevState.xIsNext,
+          moveCount: prevState.moveCount - 1,
         }
       }
     })
@@ -44,6 +46,10 @@ class Game extends Component {
           prevState.values[squareNumber] == null
             ? [...prevState.history, values]
             : prevState.history,
+        moveCount:
+          prevState.values[squareNumber] == null
+            ? prevState.moveCount + 1
+            : prevState.moveCount,
       }
     })
   }
@@ -76,14 +82,16 @@ class Game extends Component {
     this.setState({
       values: Array(9).fill(null),
       xIsNext: true,
+      history: [Array(9).fill(null)],
+      moveCount: 0,
     })
   }
 
   render() {
-    const { values, xIsNext, history } = this.state
-    const isDisabled = history.length === 1
+    const { values, xIsNext, history, moveCount } = this.state
     const offsets = [0, 3, 6]
-    const winner = isDisabled ? null : this.calculateWinner(values)
+    const winner = history.length === 1 ? null : this.calculateWinner(values)
+    const isDisabled = history.length === 1 || winner != null
 
     return (
       <Fragment>
@@ -96,8 +104,13 @@ class Game extends Component {
         <RevertLastMove
           revertLastMove={this.revertLastMove}
           isDisabled={isDisabled}
+          moveCount={moveCount}
         />
-        <GameStatus winner={winner} restartGame={this.restartGame} />
+        <GameStatus
+          moveCount={moveCount}
+          winner={winner}
+          restartGame={this.restartGame}
+        />
       </Fragment>
     )
   }

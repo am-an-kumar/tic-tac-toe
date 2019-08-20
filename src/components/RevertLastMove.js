@@ -1,8 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const RevertLastMove = ({ revertLastMove, isDisabled }) => (
-  <button id='revert-btn' onClick={revertLastMove}>
+const RevertLastMove = ({ revertLastMove, isDisabled, moveCount }) => (
+  <button
+    id='revert-btn'
+    onClick={revertLastMove}
+    disabled={isDisabled || moveCount === 9}
+  >
     Revert Last Move
   </button>
 )
@@ -10,6 +14,7 @@ const RevertLastMove = ({ revertLastMove, isDisabled }) => (
 RevertLastMove.propTypes = {
   revertLastMove: PropTypes.func.isRequired,
   isDisabled: PropTypes.bool.isRequired,
+  moveCount: PropTypes.number.isRequired,
 }
 
 export default RevertLastMove
