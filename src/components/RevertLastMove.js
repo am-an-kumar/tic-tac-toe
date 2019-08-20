@@ -1,0 +1,15 @@
+import React from 'react'
+import PropTypes from 'prop-types'
+
+const RevertLastMove = ({ revertLastMove, isDisabled }) => (
+  <button id='revert-btn' onClick={revertLastMove}>
+    Revert Last Move
+  </button>
+)
+
+RevertLastMove.propTypes = {
+  revertLastMove: PropTypes.func.isRequired,
+  isDisabled: PropTypes.bool.isRequired,
+}
+
+export default RevertLastMove
