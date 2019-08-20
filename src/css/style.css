@@ -9,11 +9,19 @@ html {
   width: 100%;
   height: 100%;
   background-color: #ccc;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#root,
+#game {
+  width: 100%;
+  height: 100%;
 }
 
 #game {
   display: flex;
   flex-flow: column nowrap;
+  align-items: center;
 }
 
 #board {
@@ -21,23 +29,39 @@ html {
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+  margin-bottom: 20px;
 }
 
 #player-name {
+  margin-bottom: 10px;
+  width: 100%;
   text-align: center;
   text-transform: capitalize;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: rgb(180, 174, 174);
 }
 
 #game-status {
+  width: 100%;
   text-transform: capitalize;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: rgb(180, 174, 174);
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+}
+
+#game-status > p {
+  background-color: rgb(180, 174, 174);
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#game-status > button {
+  margin-bottom: 10px;
+}
+
+#revert-btn {
+  margin-bottom: 10px;
 }
 
 .row {
@@ -48,4 +72,16 @@ html {
 .square {
   width: 50px;
   height: 50px;
+}
+
+.btn {
+  width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+  background-color: rgb(145, 133, 133);
+}
+
+.btn:disabled {
+  background-color: rgba(145, 133, 133, 0.2);
 }

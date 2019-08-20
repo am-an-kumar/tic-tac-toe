@@ -94,7 +94,7 @@ class Game extends Component {
     const isDisabled = history.length === 1 || winner != null
 
     return (
-      <Fragment>
+      <div id='game'>
         <NextPlayer xIsNext={xIsNext} />
         <Board
           offsets={offsets}
@@ -111,7 +111,7 @@ class Game extends Component {
           winner={winner}
           restartGame={this.restartGame}
         />
-      </Fragment>
+      </div>
     )
   }
 }
