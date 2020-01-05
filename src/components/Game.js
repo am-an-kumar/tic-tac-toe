@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import Board from './Board'
 import NextPlayer from './NextPlayer'
 import GameStatus from './GameStatus'
