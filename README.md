@@ -12,7 +12,7 @@ An ugly implementation of the basic game, tic tac toe.
 
 To play the game, install the dependencies using 'npm install' and then run:
 
-- npm run dev/ npm run dev:hot - this will open up a local server
+- npm run dev/ npm run dev:hot - this will run a local server and open up the app in your default browser
 - npm run build - this will generate a production build, open the markup file in browser
 
 ## Dependencies
