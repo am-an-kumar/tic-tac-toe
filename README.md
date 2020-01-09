@@ -10,6 +10,12 @@
 
 An ugly implementation of the basic game, tic tac toe.
 
+#### Demo
+
+To view the demo, [click](https://am-an-kumar.github.io/tic-tac-toe/) this link and play
+
+### Running Locally
+
 To play the game, install the dependencies using 'npm install' and then run:
 
 - npm run dev/ npm run dev:hot - this will run a local server and open up the app in your default browser
